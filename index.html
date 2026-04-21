@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaiveer Di Hatti | Authentic Punjabi Flavors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">Jaiveer <span>Di Hatti</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <div class="cart-icon" onclick="toggleCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="cart-count">0</span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-content fade-up">
+      <span class="badge">Est. 1991</span>
+      <h1>Taste the Tradition of <br><span>Ludhiana</span></h1>
+      <p>Hand-crafted snacks made with secret family recipes, premium ingredients, and a touch of nostalgia. Experience authentic flavors that have delighted generations.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary">Explore Menu</a>
+        <a href="#about" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about" style="padding: 100px 8%; background: var(--white); display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
+    <div class="about-text fade-up" style="flex: 1; min-width: 300px;">
+      <h2 style="font-size: 2.8rem; margin-bottom: 20px; color: var(--dark); font-family: 'Playfair Display', serif;">Our Culinary Journey</h2>
+      <div class="underline" style="margin: 0 0 30px 0;"></div>
+      <p style="margin-bottom: 20px; font-size: 1.1rem; color: #555; line-height: 1.8;">Since 1991, Jaiveer Di Hatti has been synonymous with the authentic taste of Civil Lines, Ludhiana. What started as a small cart has blossomed into a beloved local landmark.</p>
+      <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">Our secret lies in our commitment to tradition. We still use the same family recipes, grinding our own spices and sourcing the freshest ingredients daily to bring you snacks that don't just satisfy your hunger, but warm your heart.</p>
+    </div>
+    <div class="about-image fade-up" style="flex: 1; min-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+      <img src="images/hero.png" alt="Our Story" style="width: 100%; height: 400px; object-fit: cover;">
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <h2>Chef's Special Recommendations</h2>
+      <div class="underline"></div>
+    </div>
+    
+    <div class="menu-grid" id="menu-container">
+      </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-about">
+        <h3>Jaiveer Di Hatti</h3>
+        <p>Bringing the authentic taste of Civil Lines to your heart since 1991.</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Civil Lines, Ludhiana</p>
+        <p><i class="fa-solid fa-phone"></i> +91 98148-07907</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Jaiveer Di Hatti | Premium Cloud Deployment
+    </div>
+  </footer>
+
+  <script src="menuData.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
