@@ -1,125 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Order | Jaiveer Di Hatti</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body style="background-color: var(--light); padding-top: 100px;">
 
   <nav class="navbar scrolled">
-    <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Jaiveer <span>Di
-          Hatti</span></a></div>
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">Jaiveer <span>Di Hatti</span></a></div>
     <ul class="nav-links">
-      <li><a href="index.html" style="color: var(--dark);">Back to Menu</a></li>
+      <li><a href="index.html" style="color:var(--dark);">← Back to Menu</a></li>
     </ul>
   </nav>
 
-  <div class="cart-container"
-    style="max-width: 1000px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+  <div class="cart-container">
 
-    <!-- Cart Items Section -->
-    <div class="cart-items-wrapper"
-      style="background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-      <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 25px; color: var(--dark);">Your Order</h2>
-      <div id="cart-items-container">
-        <!-- Rendered via JS -->
-      </div>
+    <!-- Cart Items -->
+    <div class="cart-items-wrapper">
+      <h2 style="font-family:'Playfair Display',serif;margin-bottom:25px;color:var(--dark);">Your Order</h2>
+      <div id="cart-items-container"></div>
     </div>
 
-    <!-- Order Summary Section -->
-    <div class="order-summary"
-      style="background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); height: fit-content;">
-      <h3 style="margin-bottom: 20px; color: var(--dark);">Order Summary</h3>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: #555;">
-        <span>Subtotal</span>
-        <span id="subtotal">₹0</span>
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+      <div class="summary-row"><span>Taxes (5% GST)</span><span id="taxes">₹0</span></div>
+      <hr class="summary-divider">
+      <div class="summary-row total-row"><span>Total</span><span id="total">₹0</span></div>
+
+      <button onclick="openPaymentModal()" class="checkout-btn">
+        <i class="fa-solid fa-lock"></i> Proceed to Pay
+      </button>
+
+      <div class="secure-badges">
+        <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
+        <span><i class="fa-solid fa-bolt"></i> Instant</span>
+        <span><i class="fa-brands fa-google-pay"></i> UPI Ready</span>
       </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: #555;">
-        <span>Taxes (5% GST)</span>
-        <span id="taxes">₹0</span>
-      </div>
-      <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-      <div
-        style="display: flex; justify-content: space-between; margin-bottom: 25px; font-weight: 600; font-size: 1.2rem; color: var(--dark);">
-        <span>Total</span>
-        <span id="total">₹0</span>
-      </div>
-      <button onclick="openPaymentModal()"
-        style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 20px rgba(242, 100, 25, 0.3);">Proceed
-        to Pay</button>
     </div>
 
   </div>
 
-  <!-- Payment Modal -->
-  <div id="payment-modal"
-    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center;">
-    <div
-      style="background: white; width: 90%; max-width: 450px; border-radius: 24px; padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); transform: scale(0.9); opacity: 0; transition: 0.3s;"
-      id="modal-content">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h3 style="font-size: 1.5rem; color: var(--dark);">Select Payment</h3>
-        <i class="fa-solid fa-times" style="cursor: pointer; font-size: 1.2rem; color: #888;"
-          onclick="closePaymentModal()"></i>
+  <!-- ===== PAYMENT MODAL ===== -->
+  <div id="payment-modal" class="modal-overlay">
+    <div class="modal-box" id="modal-content">
+
+      <!-- Step 1: Choose Method -->
+      <div id="step-method">
+        <div class="modal-header">
+          <div>
+            <h3>Secure Checkout</h3>
+            <p style="color:#888;font-size:0.9rem;">Total: <strong id="modal-amount" style="color:var(--primary);font-size:1.1rem;">₹0</strong></p>
+          </div>
+          <button class="modal-close" onclick="closePaymentModal()"><i class="fa-solid fa-times"></i></button>
+        </div>
+
+        <div class="payment-methods">
+          <!-- UPI Apps -->
+          <p class="method-heading"><i class="fa-solid fa-mobile-screen-button"></i> Pay via UPI App</p>
+          <div class="upi-apps-grid">
+            <button class="upi-app-btn" onclick="openUPIApp('gpay')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/512px-Google_Pay_Logo.svg.png" alt="GPay" onerror="this.style.display='none'">
+              <span>Google Pay</span>
+            </button>
+            <button class="upi-app-btn" onclick="openUPIApp('phonepe')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.png/320px-PhonePe_Logo.png" alt="PhonePe" onerror="this.style.display='none'">
+              <span>PhonePe</span>
+            </button>
+            <button class="upi-app-btn" onclick="openUPIApp('paytm')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/320px-Paytm_Logo_%28standalone%29.svg.png" alt="Paytm" onerror="this.style.display='none'">
+              <span>Paytm</span>
+            </button>
+            <button class="upi-app-btn" onclick="openUPIApp('bhim')">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/BHIM_logo.svg/320px-BHIM_logo.svg.png" alt="BHIM" onerror="this.style.display='none'">
+              <span>BHIM</span>
+            </button>
+          </div>
+
+          <div class="method-divider"><span>or</span></div>
+
+          <!-- QR Code -->
+          <button onclick="showStep('qr')" class="pay-method-btn">
+            <i class="fa-solid fa-qrcode" style="color:var(--primary);font-size:1.3rem;"></i>
+            <div style="text-align:left;">
+              <strong>Scan QR Code</strong>
+              <p style="font-size:0.8rem;color:#888;margin:0;">Pay using any UPI app</p>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="margin-left:auto;color:#bbb;"></i>
+          </button>
+
+          <!-- Cash -->
+          <button onclick="selectPayment('cash')" class="pay-method-btn">
+            <i class="fa-solid fa-money-bill-wave" style="color:#28a745;font-size:1.3rem;"></i>
+            <div style="text-align:left;">
+              <strong>Pay Cash at Counter</strong>
+              <p style="font-size:0.8rem;color:#888;margin:0;">Show order at billing counter</p>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="margin-left:auto;color:#bbb;"></i>
+          </button>
+        </div>
       </div>
 
-      <p style="color: #666; margin-bottom: 30px;">Amount to pay: <strong id="modal-amount"
-          style="color: var(--primary); font-size: 1.2rem;">₹0</strong></p>
-
-      <div style="display: flex; flex-direction: column; gap: 15px;">
-        <button onclick="selectPayment('qr')" class="pay-method-btn"
-          style="padding: 15px; border: 2px solid #eee; border-radius: 12px; background: transparent; cursor: pointer; font-family: inherit; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;">
-          <i class="fa-solid fa-qrcode" style="color: var(--primary);"></i> Pay via QR (UPI)
-        </button>
-        <button onclick="selectPayment('cash')" class="pay-method-btn"
-          style="padding: 15px; border: 2px solid #eee; border-radius: 12px; background: transparent; cursor: pointer; font-family: inherit; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;">
-          <i class="fa-solid fa-money-bill-wave" style="color: #28a745;"></i> Pay Cash at Counter
-        </button>
-      </div>
-
-      <div id="qr-section" style="display: none; margin-top: 25px;">
-        <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Scan using any UPI App</p>
-        <img
-          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=jaiveer@upi&pn=Jaiveer%20Di%20Hatti&cu=INR"
-          alt="QR Code"
-          style="width: 150px; height: 150px; border-radius: 10px; border: 1px solid #eee; padding: 10px;">
-        <button onclick="processOrder()"
-          style="margin-top: 20px; width: 100%; background: var(--dark); color: white; border: none; padding: 12px; border-radius: 30px; font-weight: 600; cursor: pointer;">I
-          have Paid</button>
+      <!-- Step 2: QR Code -->
+      <div id="step-qr" style="display:none;">
+        <div class="modal-header">
+          <button class="modal-back" onclick="showStep('method')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <button class="modal-close" onclick="closePaymentModal()"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div style="text-align:center; padding: 10px 0 20px;">
+          <p style="font-size:1rem;color:#555;margin-bottom:5px;">Scan with any UPI app</p>
+          <p style="color:var(--primary);font-weight:700;font-size:1.3rem;margin-bottom:20px;" id="qr-amount-label">₹0</p>
+          <div class="qr-wrapper">
+            <img id="qr-img"
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=jaiveer@upi&pn=Jaiveer%20Di%20Hatti&cu=INR&am=0"
+              alt="QR Code">
+          </div>
+          <p style="font-size:0.85rem;color:#888;margin:15px 0 5px;">UPI ID: <strong>jaiveer@upi</strong></p>
+          <p style="font-size:0.8rem;color:#aaa;">Supported: GPay · PhonePe · Paytm · BHIM · Any UPI</p>
+          <button onclick="processOrder()" class="confirm-paid-btn">
+            <i class="fa-solid fa-check-circle"></i> I have Paid
+          </button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- Success Modal -->
-  <div id="success-modal"
-    style="display: none; position: fixed; inset: 0; background: var(--light); z-index: 3000; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px;">
-    <div
-      style="background: white; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2); margin-bottom: 30px;">
-      <i class="fa-solid fa-check" style="font-size: 3rem; color: #28a745;"></i>
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div id="success-modal" style="display:none; position:fixed; inset:0; background:var(--light); z-index:3000; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:20px;">
+    <div class="success-check">
+      <i class="fa-solid fa-check" style="font-size:3rem; color:#28a745;"></i>
     </div>
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--dark); margin-bottom: 15px;">
-      Order Confirmed!</h2>
-    <p style="font-size: 1.2rem; color: #555; max-width: 600px; margin-bottom: 30px;">Your payment is successful and
-      your bill is being generated. Please wait for your order at the counter.</p>
-    <div
-      style="background: white; border: 2px dashed var(--primary); padding: 20px 40px; border-radius: 20px; margin-bottom: 40px;">
-      <p style="font-size: 1rem; color: #666; margin-bottom: 5px;">Your Token Number</p>
-      <h1 id="token-number" style="font-size: 3.5rem; color: var(--primary); font-family: 'Playfair Display', serif;">--
-      </h1>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--dark);margin-bottom:15px;">Order Confirmed!</h2>
+    <p style="font-size:1.1rem;color:#555;max-width:500px;margin-bottom:30px;">Your payment is successful! Your order is being prepared. Please collect at the counter.</p>
+    <div class="token-card">
+      <p>Your Token Number</p>
+      <h1 id="token-number" style="font-size:4rem;color:var(--primary);font-family:'Playfair Display',serif;">--</h1>
+      <p id="order-time" style="font-size:0.85rem;color:#888;"></p>
     </div>
-    <a href="index.html" class="btn-outline" style="color: var(--dark); border-color: var(--dark);">Back to Home</a>
+    <div class="success-items" id="success-items"></div>
+    <a href="index.html" class="btn-primary" style="margin-top:20px;text-decoration:none;">← Back to Home</a>
   </div>
 
   <script src="cart.js"></script>
 </body>
-
 </html>

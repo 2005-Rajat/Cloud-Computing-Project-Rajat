@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaiveer Di Hatti | Authentic Punjabi Flavors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Jaiveer Di Hatti | Authentic Punjabi Flavors Since 1991</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,7 +20,8 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#about">Our Story</a></li>
       <li><a href="#menu">Menu</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Find Us</a></li>
     </ul>
     <div class="nav-icons">
       <div class="cart-icon" onclick="toggleCart()">
@@ -30,38 +31,92 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-content fade-up">
-      <span class="badge">Est. 1991</span>
+      <span class="badge">Est. 1991 · Civil Lines, Ludhiana</span>
       <h1>Taste the Tradition of <br><span>Ludhiana</span></h1>
-      <p>Hand-crafted snacks made with secret family recipes, premium ingredients, and a touch of nostalgia. Experience authentic flavors that have delighted generations.</p>
+      <p>Hand-crafted pakoras & snacks made with secret family recipes, premium ingredients, and 30+ years of love. Rated ⭐ 5.0 by our regulars.</p>
       <div class="hero-btns">
-        <a href="#menu" class="btn-primary">Explore Menu</a>
+        <a href="#menu" class="btn-primary">Order Now</a>
         <a href="#about" class="btn-outline">Our Story</a>
       </div>
     </div>
+    <div class="hero-scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
   </section>
 
-  <section class="about-section" id="about" style="padding: 100px 8%; background: var(--white); display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-    <div class="about-text fade-up" style="flex: 1; min-width: 300px;">
-      <h2 style="font-size: 2.8rem; margin-bottom: 20px; color: var(--dark); font-family: 'Playfair Display', serif;">Our Culinary Journey</h2>
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="stat-item"><span class="stat-num">33+</span><span class="stat-label">Years of Taste</span></div>
+    <div class="stat-item"><span class="stat-num">5.0</span><span class="stat-label">Star Rating</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Vegetarian</span></div>
+    <div class="stat-item"><span class="stat-num">12+</span><span class="stat-label">Menu Items</span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-text fade-up">
+      <h2>Our Culinary Journey</h2>
       <div class="underline" style="margin: 0 0 30px 0;"></div>
-      <p style="margin-bottom: 20px; font-size: 1.1rem; color: #555; line-height: 1.8;">Since 1991, Jaiveer Di Hatti has been synonymous with the authentic taste of Civil Lines, Ludhiana. What started as a small cart has blossomed into a beloved local landmark.</p>
-      <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">Our secret lies in our commitment to tradition. We still use the same family recipes, grinding our own spices and sourcing the freshest ingredients daily to bring you snacks that don't just satisfy your hunger, but warm your heart.</p>
+      <p>Since 1991, Jaiveer Di Hatti has been synonymous with the authentic taste of Civil Lines, Ludhiana. What started as a humble street cart has blossomed into one of Ludhiana's most beloved snack landmarks.</p>
+      <p>Our secret lies in our commitment to tradition. We still use the same family recipes, grinding our own spices and sourcing the freshest ingredients daily. Every bite is a piece of Ludhiana's culinary heritage.</p>
+      <div class="about-badges">
+        <span><i class="fa-solid fa-leaf"></i> 100% Vegetarian</span>
+        <span><i class="fa-solid fa-fire-flame-curved"></i> Freshly Fried</span>
+        <span><i class="fa-solid fa-seedling"></i> Farm Fresh Ingredients</span>
+      </div>
     </div>
-    <div class="about-image fade-up" style="flex: 1; min-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-      <img src="images/hero.png" alt="Our Story" style="width: 100%; height: 400px; object-fit: cover;">
+    <div class="about-image fade-up">
+      <img src="images/hero.png" alt="Jaiveer Di Hatti Story">
     </div>
   </section>
 
+  <!-- MENU -->
   <section class="menu-section" id="menu">
     <div class="section-header">
-      <h2>Chef's Special Recommendations</h2>
+      <h2>Our Menu</h2>
+      <div class="underline"></div>
+      <p class="section-sub">Everything made fresh, everything made with love.</p>
+    </div>
+    <div class="category-filters" id="category-filters">
+      <!-- Rendered via JS -->
+    </div>
+    <div class="menu-grid" id="menu-container"></div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-header">
+      <h2>What Our Customers Say</h2>
       <div class="underline"></div>
     </div>
-    
-    <div class="menu-grid" id="menu-container">
+    <div class="reviews-grid" id="reviews-container"></div>
+  </section>
+
+  <!-- MAP / FIND US -->
+  <section class="map-section" id="contact">
+    <div class="section-header" style="padding-top: 80px;">
+      <h2>Find Us</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="map-wrapper">
+      <div class="map-info fade-up">
+        <h3>Visit Us Today</h3>
+        <p><i class="fa-solid fa-location-dot"></i> WRCP+GFM, Guru Nanak Pura, New Kundanpuri, Civil Lines, Ludhiana, Punjab 141001</p>
+        <p><i class="fa-solid fa-phone"></i> <a href="tel:+919814807907">+91 98148-07907</a></p>
+        <p><i class="fa-solid fa-clock"></i> Open Daily · 8:00 AM – 9:00 PM</p>
+        <p><i class="fa-solid fa-star" style="color: var(--secondary);"></i> Rated 5.0 · Purely Vegetarian</p>
+        <a href="https://maps.google.com/?q=30.9213347,75.8361625" target="_blank" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; text-decoration: none;">
+          <i class="fa-solid fa-map-location-dot"></i> Get Directions
+        </a>
       </div>
+      <div class="map-embed fade-up">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3419.9!2d75.8361625!3d30.9213347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919838ed2b21363%3A0x7d0fdf894b4b9343!2sJaiveer%20Di%20Hatti!5e0!3m2!1sen!2sin!4v1"
+          width="100%" height="380" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -69,15 +124,27 @@
       <div class="footer-about">
         <h3>Jaiveer Di Hatti</h3>
         <p>Bringing the authentic taste of Civil Lines to your heart since 1991.</p>
+        <div class="footer-rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <span>5.0 / 5.0</span>
+        </div>
       </div>
       <div class="footer-contact">
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Civil Lines, Ludhiana</p>
+        <h4>Contact Us</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Civil Lines, Ludhiana, Punjab</p>
         <p><i class="fa-solid fa-phone"></i> +91 98148-07907</p>
+        <p><i class="fa-solid fa-clock"></i> Open Daily 8 AM – 9 PM</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Quick Links</h4>
+        <p><a href="#menu" style="color: #aaa; text-decoration: none;">Our Menu</a></p>
+        <p><a href="cart.html" style="color: #aaa; text-decoration: none;">Your Order</a></p>
+        <p><a href="#reviews" style="color: #aaa; text-decoration: none;">Reviews</a></p>
+        <p><a href="https://maps.google.com/?q=30.9213347,75.8361625" target="_blank" style="color: #aaa; text-decoration: none;">Get Directions</a></p>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Jaiveer Di Hatti | Premium Cloud Deployment
+      &copy; 2026 Jaiveer Di Hatti · Civil Lines, Ludhiana · All Rights Reserved
     </div>
   </footer>
 
